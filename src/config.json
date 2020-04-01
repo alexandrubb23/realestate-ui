@@ -1,0 +1,9 @@
+{
+  "googleMap": {
+    "apiKey": ""
+  },
+  "firebase": {
+    "apiKey": "",
+    "authDomain": ""
+  }
+}
