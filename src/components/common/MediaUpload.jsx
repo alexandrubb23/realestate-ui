@@ -1,11 +1,13 @@
 import React, { Fragment, useState, useEffect } from "react";
 import _ from "lodash";
+
+import { v4 } from "uuid";
 import { getImages, saveImage } from "../../services/ImageService";
 
 function MediaUpload({
   dataImages,
   onHandleDataImage,
-  showImageGallery = true
+  showImageGallery = true,
 }) {
   /**
    * Images state.
@@ -63,7 +65,7 @@ function MediaUpload({
         id: stateImages.length + 1,
         name: file,
         src: reader.result,
-        uploadInProgress: true
+        uploadInProgress: true,
       };
 
       const images = [...stateImages];
@@ -119,8 +121,8 @@ function MediaUpload({
       dataImages.length > 0 &&
       showImageGallery && (
         <div className="row text-center text-lg-left">
-          {dataImages.map((image, index) => (
-            <div key={index + 1} className="col-lg-3 col-md-4 col-6">
+          {dataImages.map(image => (
+            <div key={v4()} className="col-lg-3 col-md-4 col-6">
               <div className="d-block mb-4 h-100 custom-control custom-checkbox image-checkbox">
                 <img
                   className="img-fluid img-thumbnail"
@@ -194,7 +196,7 @@ function MediaUpload({
                           style={{
                             opacity: _.has(image, "uploadInProgress")
                               ? "0.5"
-                              : "1"
+                              : "1",
                           }}
                           className="img-fluid img-thumbnail"
                           src={image.src}
